@@ -1,59 +1,372 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# API Documentation — E-Commerce Sederhana
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Informasi Umum
 
-## About Laravel
+| Item | Detail |
+|------|--------|
+| **Nama Project** | API E-Commerce Sederhana — UTP TIS |
+| **Framework** | Laravel 12 |
+| **Bahasa** | PHP 8.2+ |
+| **Penyimpanan Data** | File JSON (tanpa database) |
+| **Base URL** | `http://localhost:8000/api` |
+| **Swagger UI** | `http://localhost:8000/api/documentation` |
+| **Pembuat** | Alfi Perdiansyah Putra (245150701111028) |
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Cara Menjalankan Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Clone Repository
+```bash
+git clone <repository-url>
+cd 245150701111028-AlfiPerdiansyahPutra-utptis
+```
 
-## Learning Laravel
+### 2. Install Dependencies
+```bash
+composer install
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 3. Copy Environment File
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 4. Jalankan Server
+```bash
+php artisan serve
+```
 
-## Laravel Sponsors
+Server akan berjalan di `http://localhost:8000`.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 5. Akses Swagger UI
+Buka browser dan navigasi ke:
+```
+http://localhost:8000/api/documentation
+```
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Struktur Data Barang
 
-## Contributing
+Setiap item barang memiliki struktur sebagai berikut:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Field | Tipe | Deskripsi |
+|-------|------|-----------|
+| `id` | integer | ID unik barang (auto-generated) |
+| `nama` | string | Nama barang |
+| `harga` | number | Harga barang dalam Rupiah |
+| `stok` | integer | Jumlah stok tersedia |
+| `kategori` | string | Kategori barang |
+| `deskripsi` | string | Deskripsi detail barang |
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Daftar Endpoint API
 
-## Security Vulnerabilities
+### 1. `GET /api/barang` — Menampilkan Semua Barang
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Deskripsi:** Mengambil seluruh daftar barang yang tersedia.
 
-## License
+**Request:**
+```
+GET http://localhost:8000/api/barang
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Response Sukses (200):**
+```json
+{
+    "status": "success",
+    "message": "Daftar semua barang berhasil diambil",
+    "data": [
+        {
+            "id": 1,
+            "nama": "Laptop ASUS ROG Strix",
+            "harga": 18500000,
+            "stok": 12,
+            "kategori": "Elektronik",
+            "deskripsi": "Laptop gaming high-end dengan RTX 4060"
+        },
+        ...
+    ],
+    "total": 8
+}
+```
+
+---
+
+### 2. `GET /api/barang/{id}` — Menampilkan Barang Berdasarkan ID
+
+**Deskripsi:** Mengambil detail satu barang berdasarkan ID.
+
+**Request:**
+```
+GET http://localhost:8000/api/barang/1
+```
+
+**Response Sukses (200):**
+```json
+{
+    "status": "success",
+    "message": "Detail barang berhasil diambil",
+    "data": {
+        "id": 1,
+        "nama": "Laptop ASUS ROG Strix",
+        "harga": 18500000,
+        "stok": 12,
+        "kategori": "Elektronik",
+        "deskripsi": "Laptop gaming high-end dengan RTX 4060"
+    }
+}
+```
+
+**Response Error — Barang Tidak Ditemukan (404):**
+```json
+{
+    "status": "error",
+    "message": "Barang dengan ID 99 tidak ditemukan"
+}
+```
+
+---
+
+### 3. `POST /api/barang` — Membuat Barang Baru
+
+**Deskripsi:** Menambahkan item barang baru.
+
+**Headers:**
+```
+Content-Type: application/json
+Accept: application/json
+```
+
+**Request Body:**
+```json
+{
+    "nama": "Mousepad Gaming XL",
+    "harga": 150000,
+    "stok": 50,
+    "kategori": "Aksesoris",
+    "deskripsi": "Mousepad gaming ukuran XL anti-slip"
+}
+```
+
+| Field | Wajib | Tipe | Validasi |
+|-------|-------|------|----------|
+| `nama` | ✅ Ya | string | Maksimal 255 karakter |
+| `harga` | ✅ Ya | numeric | Minimal 0 |
+| `stok` | ❌ Tidak | integer | Minimal 0 (default: 0) |
+| `kategori` | ❌ Tidak | string | Maksimal 100 karakter |
+| `deskripsi` | ❌ Tidak | string | Maksimal 500 karakter |
+
+**Response Sukses (201):**
+```json
+{
+    "status": "success",
+    "message": "Barang berhasil ditambahkan",
+    "data": {
+        "id": 9,
+        "nama": "Mousepad Gaming XL",
+        "harga": 150000,
+        "stok": 50,
+        "kategori": "Aksesoris",
+        "deskripsi": "Mousepad gaming ukuran XL anti-slip"
+    }
+}
+```
+
+**Response Error — Validasi Gagal (422):**
+```json
+{
+    "status": "error",
+    "message": "Validasi gagal",
+    "errors": {
+        "nama": ["Nama barang wajib diisi"],
+        "harga": ["Harga barang wajib diisi"]
+    }
+}
+```
+
+---
+
+### 4. `PUT /api/barang/{id}` — Mengedit Seluruh Data Barang
+
+**Deskripsi:** Memperbarui seluruh field dari barang yang sudah ada. **Semua field wajib diisi.**
+
+**Headers:**
+```
+Content-Type: application/json
+Accept: application/json
+```
+
+**Request:**
+```
+PUT http://localhost:8000/api/barang/1
+```
+
+**Request Body:**
+```json
+{
+    "nama": "Laptop ASUS ROG Strix G16",
+    "harga": 19500000,
+    "stok": 15,
+    "kategori": "Elektronik",
+    "deskripsi": "Laptop gaming high-end versi terbaru"
+}
+```
+
+| Field | Wajib | Tipe | Validasi |
+|-------|-------|------|----------|
+| `nama` | ✅ Ya | string | Maksimal 255 karakter |
+| `harga` | ✅ Ya | numeric | Minimal 0 |
+| `stok` | ✅ Ya | integer | Minimal 0 |
+| `kategori` | ✅ Ya | string | Maksimal 100 karakter |
+| `deskripsi` | ✅ Ya | string | Maksimal 500 karakter |
+
+**Response Sukses (200):**
+```json
+{
+    "status": "success",
+    "message": "Barang dengan ID 1 berhasil diperbarui secara penuh",
+    "data": {
+        "id": 1,
+        "nama": "Laptop ASUS ROG Strix G16",
+        "harga": 19500000,
+        "stok": 15,
+        "kategori": "Elektronik",
+        "deskripsi": "Laptop gaming high-end versi terbaru"
+    }
+}
+```
+
+**Response Error — Barang Tidak Ditemukan (404):**
+```json
+{
+    "status": "error",
+    "message": "Barang dengan ID 99 tidak ditemukan"
+}
+```
+
+---
+
+### 5. `PATCH /api/barang/{id}` — Mengedit Sebagian Data Barang
+
+**Deskripsi:** Memperbarui satu atau beberapa field saja. **Minimal satu field harus diisi.**
+
+**Headers:**
+```
+Content-Type: application/json
+Accept: application/json
+```
+
+**Request:**
+```
+PATCH http://localhost:8000/api/barang/2
+```
+
+**Request Body (contoh: hanya update harga):**
+```json
+{
+    "harga": 950000
+}
+```
+
+**Response Sukses (200):**
+```json
+{
+    "status": "success",
+    "message": "Barang dengan ID 2 berhasil diperbarui secara parsial",
+    "data": {
+        "id": 2,
+        "nama": "Mouse Logitech G502",
+        "harga": 950000,
+        "stok": 45,
+        "kategori": "Aksesoris",
+        "deskripsi": "Mouse gaming ergonomis dengan sensor HERO 25K"
+    }
+}
+```
+
+**Response Error — Tidak Ada Field (422):**
+```json
+{
+    "status": "error",
+    "message": "Minimal satu field harus diisi untuk update parsial (nama, harga, stok, kategori, deskripsi)"
+}
+```
+
+---
+
+### 6. `DELETE /api/barang/{id}` — Menghapus Barang
+
+**Deskripsi:** Menghapus item barang berdasarkan ID.
+
+**Request:**
+```
+DELETE http://localhost:8000/api/barang/1
+```
+
+**Response Sukses (200):**
+```json
+{
+    "status": "success",
+    "message": "Barang dengan ID 1 berhasil dihapus",
+    "data": {
+        "id": 1,
+        "nama": "Laptop ASUS ROG Strix",
+        "harga": 18500000,
+        "stok": 12,
+        "kategori": "Elektronik",
+        "deskripsi": "Laptop gaming high-end dengan RTX 4060"
+    }
+}
+```
+
+**Response Error — Barang Tidak Ditemukan (404):**
+```json
+{
+    "status": "error",
+    "message": "Barang dengan ID 99 tidak ditemukan"
+}
+```
+
+---
+
+## Ringkasan Error Handling
+
+| HTTP Code | Deskripsi | Contoh |
+|-----------|-----------|--------|
+| `200` | Request berhasil | GET, PUT, PATCH, DELETE sukses |
+| `201` | Resource berhasil dibuat | POST sukses |
+| `404` | Resource tidak ditemukan | ID barang tidak ada |
+| `422` | Validasi gagal | Field wajib kosong, tipe data salah |
+
+Semua response menggunakan format JSON yang konsisten:
+
+**Format Sukses:**
+```json
+{
+    "status": "success",
+    "message": "...",
+    "data": { ... }
+}
+```
+
+**Format Error:**
+```json
+{
+    "status": "error",
+    "message": "...",
+    "errors": { ... }
+}
+```
+
+---
+
+## Teknologi yang Digunakan
+
+- **Laravel 12** — PHP web framework
+- **PHP 8.2+** — Server-side programming language
+- **JSON File Storage** — Penyimpanan data tanpa database
+- **L5-Swagger** — Dokumentasi API otomatis dengan Swagger/OpenAPI 3.0
