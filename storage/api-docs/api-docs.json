@@ -1,0 +1,701 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API E-Commerce Sederhana — UTP TIS",
+        "description": "Backend API sederhana untuk e-commerce menggunakan Laravel dengan mock data JSON (non-database). Dibuat untuk tugas UTP mata kuliah Teknologi Integrasi Sistem.",
+        "contact": {
+            "name": "Alfi Perdiansyah Putra",
+            "email": "245150701111028@student.ub.ac.id"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/barang": {
+            "get": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Menampilkan semua barang",
+                "description": "Mengambil seluruh daftar barang yang tersedia di dalam penyimpanan JSON.",
+                "operationId": "3415f6f852aa37c9b62b1cbac1fc2752",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil daftar barang",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Daftar semua barang berhasil diambil"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "Laptop ASUS ROG Strix"
+                                                    },
+                                                    "harga": {
+                                                        "type": "number",
+                                                        "example": 18500000
+                                                    },
+                                                    "stok": {
+                                                        "type": "integer",
+                                                        "example": 12
+                                                    },
+                                                    "kategori": {
+                                                        "type": "string",
+                                                        "example": "Elektronik"
+                                                    },
+                                                    "deskripsi": {
+                                                        "type": "string",
+                                                        "example": "Laptop gaming high-end dengan RTX 4060"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "total": {
+                                            "type": "integer",
+                                            "example": 8
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Membuat barang baru",
+                "description": "Menambahkan item barang baru ke dalam penyimpanan. Nama dan harga wajib diisi.",
+                "operationId": "876831cf30f22df5da8f1b10b7914dee",
+                "requestBody": {
+                    "description": "Data barang yang akan ditambahkan",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama",
+                                    "harga"
+                                ],
+                                "properties": {
+                                    "nama": {
+                                        "description": "Nama barang (wajib)",
+                                        "type": "string",
+                                        "example": "Mousepad Gaming XL"
+                                    },
+                                    "harga": {
+                                        "description": "Harga barang dalam Rupiah (wajib)",
+                                        "type": "number",
+                                        "example": 150000
+                                    },
+                                    "stok": {
+                                        "description": "Jumlah stok (opsional, default: 0)",
+                                        "type": "integer",
+                                        "example": 50
+                                    },
+                                    "kategori": {
+                                        "description": "Kategori barang (opsional)",
+                                        "type": "string",
+                                        "example": "Aksesoris"
+                                    },
+                                    "deskripsi": {
+                                        "description": "Deskripsi barang (opsional)",
+                                        "type": "string",
+                                        "example": "Mousepad gaming ukuran XL anti-slip"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Barang berhasil ditambahkan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Barang berhasil ditambahkan"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 9
+                                                },
+                                                "nama": {
+                                                    "type": "string",
+                                                    "example": "Mousepad Gaming XL"
+                                                },
+                                                "harga": {
+                                                    "type": "number",
+                                                    "example": 150000
+                                                },
+                                                "stok": {
+                                                    "type": "integer",
+                                                    "example": 50
+                                                },
+                                                "kategori": {
+                                                    "type": "string",
+                                                    "example": "Aksesoris"
+                                                },
+                                                "deskripsi": {
+                                                    "type": "string",
+                                                    "example": "Mousepad gaming ukuran XL anti-slip"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validasi gagal"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": "{\"nama\": [\"Nama barang wajib diisi\"]}"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/barang/{id}": {
+            "get": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Menampilkan barang berdasarkan ID",
+                "description": "Mengambil detail satu barang berdasarkan parameter ID yang diberikan.",
+                "operationId": "0d5d3892027bd58b8c779a1b0d2c4dd5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID unik barang",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil detail barang",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Detail barang berhasil diambil"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "nama": {
+                                                    "type": "string",
+                                                    "example": "Laptop ASUS ROG Strix"
+                                                },
+                                                "harga": {
+                                                    "type": "number",
+                                                    "example": 18500000
+                                                },
+                                                "stok": {
+                                                    "type": "integer",
+                                                    "example": 12
+                                                },
+                                                "kategori": {
+                                                    "type": "string",
+                                                    "example": "Elektronik"
+                                                },
+                                                "deskripsi": {
+                                                    "type": "string",
+                                                    "example": "Laptop gaming high-end dengan RTX 4060"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Barang tidak ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Barang dengan ID 99 tidak ditemukan"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Mengedit seluruh data barang (full update)",
+                "description": "Memperbarui seluruh field dari barang yang sudah ada. Semua field wajib diisi.",
+                "operationId": "51a407818f4f1ed42188ff4512f280ac",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID unik barang yang akan diupdate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Seluruh data barang yang akan diupdate",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama",
+                                    "harga",
+                                    "stok",
+                                    "kategori",
+                                    "deskripsi"
+                                ],
+                                "properties": {
+                                    "nama": {
+                                        "type": "string",
+                                        "example": "Laptop ASUS ROG Strix G16"
+                                    },
+                                    "harga": {
+                                        "type": "number",
+                                        "example": 19500000
+                                    },
+                                    "stok": {
+                                        "type": "integer",
+                                        "example": 15
+                                    },
+                                    "kategori": {
+                                        "type": "string",
+                                        "example": "Elektronik"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string",
+                                        "example": "Laptop gaming high-end versi terbaru"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Barang berhasil diperbarui secara penuh",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Barang dengan ID 1 berhasil diperbarui secara penuh"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "nama": {
+                                                    "type": "string",
+                                                    "example": "Laptop ASUS ROG Strix G16"
+                                                },
+                                                "harga": {
+                                                    "type": "number",
+                                                    "example": 19500000
+                                                },
+                                                "stok": {
+                                                    "type": "integer",
+                                                    "example": 15
+                                                },
+                                                "kategori": {
+                                                    "type": "string",
+                                                    "example": "Elektronik"
+                                                },
+                                                "deskripsi": {
+                                                    "type": "string",
+                                                    "example": "Laptop gaming high-end versi terbaru"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Barang tidak ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Barang dengan ID 99 tidak ditemukan"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validasi gagal. PUT membutuhkan semua field"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Menghapus barang",
+                "description": "Menghapus item barang berdasarkan ID yang diberikan.",
+                "operationId": "c523a9084765e0c219abab57e68d2645",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID unik barang yang akan dihapus",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Barang berhasil dihapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Barang dengan ID 1 berhasil dihapus"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "nama": {
+                                                    "type": "string",
+                                                    "example": "Laptop ASUS ROG Strix"
+                                                },
+                                                "harga": {
+                                                    "type": "number",
+                                                    "example": 18500000
+                                                },
+                                                "stok": {
+                                                    "type": "integer",
+                                                    "example": 12
+                                                },
+                                                "kategori": {
+                                                    "type": "string",
+                                                    "example": "Elektronik"
+                                                },
+                                                "deskripsi": {
+                                                    "type": "string",
+                                                    "example": "Laptop gaming high-end dengan RTX 4060"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Barang tidak ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Barang dengan ID 99 tidak ditemukan"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Mengedit sebagian data barang (partial update)",
+                "description": "Memperbarui satu atau beberapa field dari barang yang sudah ada. Minimal satu field harus diisi.",
+                "operationId": "df7ca4791d602ba11beae9ad95eda42d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID unik barang yang akan diupdate parsial",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Field yang ingin diupdate (minimal satu)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama": {
+                                        "type": "string",
+                                        "example": "Laptop ASUS TUF Gaming"
+                                    },
+                                    "harga": {
+                                        "type": "number",
+                                        "example": 14000000
+                                    },
+                                    "stok": {
+                                        "type": "integer",
+                                        "example": 20
+                                    },
+                                    "kategori": {
+                                        "type": "string",
+                                        "example": "Elektronik"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string",
+                                        "example": "Laptop gaming mid-range yang tangguh"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Barang berhasil diperbarui secara parsial",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Barang dengan ID 1 berhasil diperbarui secara parsial"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "nama": {
+                                                    "type": "string",
+                                                    "example": "Laptop ASUS TUF Gaming"
+                                                },
+                                                "harga": {
+                                                    "type": "number",
+                                                    "example": 14000000
+                                                },
+                                                "stok": {
+                                                    "type": "integer",
+                                                    "example": 12
+                                                },
+                                                "kategori": {
+                                                    "type": "string",
+                                                    "example": "Elektronik"
+                                                },
+                                                "deskripsi": {
+                                                    "type": "string",
+                                                    "example": "Laptop gaming mid-range yang tangguh"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Barang tidak ditemukan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Barang dengan ID 99 tidak ditemukan"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal atau tidak ada field yang dikirim",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Minimal satu field harus diisi untuk update parsial"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Barang",
+            "description": "Barang"
+        }
+    ]
+}

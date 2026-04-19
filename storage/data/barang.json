@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "nama": "Laptop ASUS ROG Strix",
+        "harga": 18500000,
+        "stok": 12,
+        "kategori": "Elektronik",
+        "deskripsi": "Laptop gaming high-end dengan RTX 4060"
+    },
+    {
+        "id": 2,
+        "nama": "Mouse Logitech G502",
+        "harga": 850000,
+        "stok": 45,
+        "kategori": "Aksesoris",
+        "deskripsi": "Mouse gaming ergonomis dengan sensor HERO 25K"
+    },
+    {
+        "id": 3,
+        "nama": "Keyboard Mechanical Rexus",
+        "harga": 450000,
+        "stok": 30,
+        "kategori": "Aksesoris",
+        "deskripsi": "Keyboard mechanical RGB dengan switch blue"
+    },
+    {
+        "id": 4,
+        "nama": "Monitor Samsung Odyssey",
+        "harga": 4200000,
+        "stok": 8,
+        "kategori": "Elektronik",
+        "deskripsi": "Monitor gaming 27 inch 144Hz curved"
+    },
+    {
+        "id": 5,
+        "nama": "Headset HyperX Cloud II",
+        "harga": 1200000,
+        "stok": 20,
+        "kategori": "Aksesoris",
+        "deskripsi": "Headset gaming 7.1 surround sound"
+    },
+    {
+        "id": 6,
+        "nama": "SSD Samsung 970 EVO 1TB",
+        "harga": 1350000,
+        "stok": 25,
+        "kategori": "Komponen",
+        "deskripsi": "SSD NVMe M.2 dengan kecepatan baca 3500MB\/s"
+    },
+    {
+        "id": 7,
+        "nama": "RAM Corsair Vengeance 16GB",
+        "harga": 750000,
+        "stok": 35,
+        "kategori": "Komponen",
+        "deskripsi": "RAM DDR4 3200MHz dual channel kit"
+    },
+    {
+        "id": 8,
+        "nama": "Webcam Logitech C920",
+        "harga": 980000,
+        "stok": 15,
+        "kategori": "Aksesoris",
+        "deskripsi": "Webcam Full HD 1080p dengan autofocus"
+    },
+    {
+        "id": 9,
+        "nama": "Mousepad Gaming XL",
+        "harga": 150000,
+        "stok": 50,
+        "kategori": "Aksesoris",
+        "deskripsi": "Mousepad gaming ukuran XL anti-slip"
+    }
+]
