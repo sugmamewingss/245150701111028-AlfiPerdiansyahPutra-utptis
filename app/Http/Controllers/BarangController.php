@@ -14,11 +14,7 @@ use OpenApi\Attributes as OA;
 #[OA\Info(
     version: '1.0.0',
     title: 'API E-Commerce Sederhana — UTP TIS',
-    description: 'Backend API sederhana untuk e-commerce menggunakan Laravel dengan mock data JSON (non-database). Dibuat untuk tugas UTP mata kuliah Teknologi Integrasi Sistem.',
-    contact: new OA\Contact(
-        name: 'Alfi Perdiansyah Putra',
-        email: '245150701111028@student.ub.ac.id'
-    )
+    description: 'Dibuat untuk UTP Teknologi Integrasi Sistem'
 )]
 #[OA\Server(url: '/api', description: 'API Server')]
 class BarangController extends Controller
